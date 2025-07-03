@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewFile" }, --as we only need treesitter when we open new/already existing files
+  event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
 
   config = function()
