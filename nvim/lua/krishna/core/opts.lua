@@ -5,8 +5,7 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 opt.wrap = false
-opt.cursorline = true -- enables highlighting of current line
-
+opt.cursorline = true --highlight current line
 
 --tabs & indentation 
 opt.tabstop = 4
@@ -14,14 +13,13 @@ opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
-
+opt.backspace = "indent,eol,start"
 
 --search settings
 opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = false
-
 
 -- turn on termgui colours for colorscheme to work
 opt.termguicolors = true
@@ -31,9 +29,6 @@ opt.signcolumn = "yes"
 -- file and backup behaviour
 opt.swapfile = false  -- disables creation of .swp files (used for crash recovery)
 opt.backup = false  -- disables creation of backup files before overwriting
-
--- backspace
-opt.backspace = "indent,eol,start"
 
 --clipboard
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register

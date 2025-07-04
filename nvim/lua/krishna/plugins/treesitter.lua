@@ -28,11 +28,11 @@ return {
                       "File larger than 100KB treesitter disabled for performance",
                       vim.log.levels.WARN,
                       { title = "Treesitter" }
-                     )
-                     return true
-              end
-       end,
-    },
+                    )
+                    return true
+                end
+        end,
+      },
 
     })
   end,
