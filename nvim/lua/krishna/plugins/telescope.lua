@@ -20,12 +20,14 @@ return {
     require("telescope").load_extension("fzf")
 
     -- prefix f- for find
-    vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-    vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-    vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-    vim.keymap.set('n', '<leader>lt', "<cmd>Telescope treesitter", { desc = 'List functions' })
-    vim.keymap.set('n', '<leader>fh', "<cmd>Telescope help_tags<cr>", { desc = "Telescope help tags"})
+    local builtin = require('telescope.builtin')
 
-    -- use "telescope builtin" to see all the things (commands) that telescope has
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
+    vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+    vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in cwd" })
+    vim.keymap.set('n', "<leader>lt", builtin.treesitter, { desc = "List functions" })
+    vim.keymap.set('n', "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+    vim.keymap.set('n', "<leader>fb", "<cmd>Telescope builtin<cr>", { desc = "Builtin Telescope cmds" })
+
   end,
 }

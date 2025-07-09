@@ -75,7 +75,7 @@ return {
                 return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind() -- reduce noice in lsp suggestions
             end,
         },
-        {name = "buffer" },
+        -- {name = "buffer" },
         {name = "path" },
       })
     })
