@@ -20,7 +20,8 @@ return {
         using namespace std;
 
         typedef long long ll;
-        #define pb push_back
+        #define pb push_back 
+        const int mod = 1e9+7;
 
         void space() {{
             {}
@@ -40,7 +41,7 @@ return {
             }}
             return 0;
         }}
-        ]], { i(0) }
+        ]], {i(0)}
         )
     ),
 
@@ -86,7 +87,7 @@ return {
         
             return 0;
         }}
-        ]], { i(0) }
+        ]], {i(0)}
         )
     ),
 
@@ -95,6 +96,10 @@ return {
 
         #include <bits/stdc++.h>
         using namespace std;
+
+        typedef long long ll;
+        #define pb push_back
+        const int mod = 1e9+7;
         
         int main() {{
             ios::sync_with_stdio(false);

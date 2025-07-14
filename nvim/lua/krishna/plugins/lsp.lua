@@ -76,7 +76,7 @@ return {
             end,
         },
         -- {name = "buffer" },
-        {name = "path" },
+        -- {name = "path" },
       })
     })
 

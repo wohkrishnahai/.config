@@ -1,11 +1,13 @@
-vim.cmd("let g:netrw_liststyle = 3")
-
+vim.g.netrw_liststyle = 3
 local opt = vim.opt
 
+--general
 opt.relativenumber = true
 opt.number = true
 opt.wrap = false
 opt.cursorline = true --highlight current line
+opt.signcolumn = "yes"
+opt.scrolloff = 4  --leaves 4 line margin when scrolling
 
 --tabs & indentation 
 opt.tabstop = 4
@@ -24,7 +26,6 @@ opt.hlsearch = false
 -- turn on termgui colours for colorscheme to work
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes"
 
 -- file and backup behaviour
 opt.swapfile = false  -- disables creation of .swp files (used for crash recovery)
@@ -36,5 +37,4 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 --split windows 
 opt.splitright = true -- split vertical window to right
 opt.splitbelow = true -- split horizontal window to bottom
-
 
