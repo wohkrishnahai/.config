@@ -1,3 +1,3 @@
 require("krishna.core.opts")
-require("krishna.core.keymaps")
+require("krishna.core.keys")
 

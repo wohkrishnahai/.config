@@ -5,7 +5,7 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 opt.wrap = false
-opt.cursorline = true --highlight current line
+-- opt.cursorline = true --highlight current line
 opt.signcolumn = "yes"
 opt.scrolloff = 4  --leaves 4 line margin when scrolling
 

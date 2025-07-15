@@ -9,21 +9,14 @@ family = "FiraCode Nerd Font"
 style = "Regular"
 
 # [font.bold]
-# style = "Bold"
-
-# [font.italic]
-# style = "Italic"
-
-# [font.bold_italic]
-# style = "Bold Italic"
+# style = "Normal"
 
 
 [window]
 opacity = 0.9
 #blur = true 
-# decorations = "none"
+# decorations = "buttonless"
 dynamic_padding = true
-#option_as_alt = "Both"
 
 [window.padding]
 x = 0
@@ -71,3 +64,4 @@ blue = '#8ba9c1'
 magenta = '#c9b1ca'
 cyan = '#bebeda'
 white = '#d7d7d7'
+

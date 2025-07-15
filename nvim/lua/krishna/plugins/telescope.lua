@@ -25,7 +25,6 @@ return {
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
     vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
     vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in cwd" })
-    vim.keymap.set('n', "<leader>lt", builtin.treesitter, { desc = "List functions" })
     vim.keymap.set('n', "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
     vim.keymap.set('n', "<leader>fb", "<cmd>Telescope builtin<cr>", { desc = "Builtin Telescope cmds" })
 
