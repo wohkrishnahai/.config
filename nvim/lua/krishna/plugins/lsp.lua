@@ -31,7 +31,9 @@ return {
     vim.api.nvim_set_hl(0, "CmpNormal", {})
 
     cmp.setup({
-      completeopt = "menu, menuone, noselect",
+       completion = {
+         completeopt = "menu, menuone, noselect",
+       },
 
       snippet = {
         expand = function(args)
