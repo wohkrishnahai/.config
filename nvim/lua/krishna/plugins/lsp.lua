@@ -1,6 +1,3 @@
--- lsp
--- contains lspconfig, mason and nvim-cmp
-
 return {
   "neovim/nvim-lspconfig",
 
@@ -12,18 +9,13 @@ return {
     "williamboman/mason-lspconfig.nvim",
     -- nvim-cmp
     "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-buffer", -- source for text in buffer
-    "hrsh7th/cmp-path", -- source for file system paths
-    "hrsh7th/cmp-cmdline", -- source for :, /, ? in cmdline
-    "saadparwaiz1/cmp_luasnip", -- source for luasnip snippets
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "saadparwaiz1/cmp_luasnip",
   },
 
   config = function()
-
-    vim.diagnostic.config({ -- rounded borders
-        float = { border = "rounded" }
-    })
-
     -- mason
     require("mason").setup()
     require("mason-lspconfig").setup({
@@ -39,20 +31,18 @@ return {
     vim.api.nvim_set_hl(0, "CmpNormal", {})
 
     cmp.setup({
-      completion = {
-        completeopt = "menu,menuone,preview,noselect",
-      },
+      completeopt = "menu, menuone, noselect",
 
-      snippet = { -- configure how nvim-cmp interacts with snippet engine
+      snippet = {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
         end,
       },
 
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- enter to select suggestion
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
 
       window = {  -- rounded borders
@@ -71,8 +61,8 @@ return {
       sources = cmp.config.sources({
         { name = "luasnip" },
         { name = "nvim_lsp",
-            entry_filter = function(entry, ctx)
-                return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind() -- reduce noice in lsp suggestions
+            entry_filter = function(entry, ctx) -- reduce noice
+                return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind()
             end,
         },
         -- {name = "buffer" },
@@ -124,10 +114,12 @@ return {
 
     vim.diagnostic.config({
         signs = { text = diagnostic_signs },
-        -- virtual_lines = { current_line = true, },
+        float = { border = "rounded" },
+        -- virtual_text = true,
      })
 
-    --custom language server configs
+
+    --custom lang server configs
     vim.lsp.config("lua_ls", {
         settings = {
             Lua = {
@@ -138,12 +130,5 @@ return {
         }
     })
 
-    -- vim.lsp.config("clangd", {
-    --     cmd = {
-    --         "clangd",
-    --         "--fallback-style=webkit",
-    --         "--fallback-style={BasedOnStyle: llvm, ShiftWidth: 4, IndentWidth: 4, TabWidth: 4, UseTab: Never}"
-    --      }
-    -- })
   end,
 }

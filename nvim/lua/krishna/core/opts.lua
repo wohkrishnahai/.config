@@ -5,9 +5,9 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 opt.wrap = false
--- opt.cursorline = true --highlight current line
+opt.cursorline = true
 opt.signcolumn = "yes"
-opt.scrolloff = 4  --leaves 4 line margin when scrolling
+opt.scrolloff = 4
 
 --tabs & indentation 
 opt.tabstop = 4
@@ -23,11 +23,10 @@ opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = false
 
--- turn on termgui colours for colorscheme to work
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 
--- file and backup behaviour
+-- file backup behaviour
 opt.swapfile = false  -- disables creation of .swp files (used for crash recovery)
 opt.backup = false  -- disables creation of backup files before overwriting
 
@@ -35,6 +34,6 @@ opt.backup = false  -- disables creation of backup files before overwriting
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 --split windows 
-opt.splitright = true -- split vertical window to right
-opt.splitbelow = true -- split horizontal window to bottom
+opt.splitright = true  --for vsplit
+opt.splitbelow = true  --for hsplit
 
