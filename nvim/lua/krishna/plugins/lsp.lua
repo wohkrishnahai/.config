@@ -87,12 +87,6 @@ return {
         opts.desc = "Format the open file"
         vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
 
-        opts.desc = "See available code actions"
-        vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts) -- applies to selection in visual mode
-
-        opts.desc = "Smart rename"
-        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-
         opts.desc = "Show line diagnostics"
         vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 

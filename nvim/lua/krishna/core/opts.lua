@@ -8,6 +8,8 @@ opt.wrap = false
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.scrolloff = 4
+vim.o.winborder = "rounded"
+vim.o.winhighlight = "Normal:CmpNormal"
 
 --tabs & indentation 
 opt.tabstop = 4

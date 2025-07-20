@@ -9,13 +9,12 @@ family = "FiraCode Nerd Font"
 style = "Regular"
 
 # [font.bold]
-# style = "Normal"
+# style = "Bold"
 
 
 [window]
 opacity = 0.9
-#blur = true 
-# decorations = "buttonless"
+# decorations = "none"
 dynamic_padding = true
 
 [window.padding]
@@ -23,7 +22,6 @@ x = 0
 y = 0
 
 
-# key binds 
 [[keyboard.bindings]]
 action = "ResetFontSize"
 key = "Key0"
