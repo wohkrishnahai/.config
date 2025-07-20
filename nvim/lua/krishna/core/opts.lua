@@ -2,6 +2,9 @@ vim.g.netrw_liststyle = 3
 local opt = vim.opt
 
 --general
+opt.termguicolors = true
+opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+
 opt.relativenumber = true
 opt.number = true
 opt.wrap = false
@@ -17,6 +20,7 @@ opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
+opt.smartindent = false
 opt.backspace = "indent,eol,start"
 
 --search settings
@@ -24,9 +28,6 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = false
-
-opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 
 -- file backup behaviour
 opt.swapfile = false  -- disables creation of .swp files (used for crash recovery)
