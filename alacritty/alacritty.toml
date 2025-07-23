@@ -1,5 +1,5 @@
 [env]
-TERM = "screen-256color"
+TERM = "xterm-256color"
 
 [font]
 size = 20 
@@ -14,7 +14,7 @@ style = "Regular"
 
 [window]
 opacity = 0.9
-# decorations = "none"
+decorations = "none"
 dynamic_padding = true
 
 [window.padding]
