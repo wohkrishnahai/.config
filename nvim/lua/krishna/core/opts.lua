@@ -4,6 +4,7 @@ local opt = vim.opt
 --general
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor100"
 
 opt.relativenumber = true
 opt.number = true
@@ -11,7 +12,7 @@ opt.wrap = false
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.scrolloff = 4
-vim.o.winborder = "rounded"
+-- vim.o.winborder = "rounded"
 vim.o.winhighlight = "Normal:CmpNormal"
 
 --tabs & indentation 
