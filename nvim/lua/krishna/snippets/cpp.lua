@@ -14,102 +14,102 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- cpp templates
 -- for cp
 return {
-    s({ trig = "lezzgo", dscr = "cp template" },
-        fmt([[
-        #include <bits/stdc++.h>
-        using namespace std;
+  s({ trig = "lezzgo", dscr = "cp template" },
+      fmt([[
+      #include <bits/stdc++.h>
+      using namespace std;
 
-        typedef long long ll;
-        #define pb push_back 
-        const int mod = 1e9+7;
+      typedef long long ll;
+      #define pb push_back 
+      const int mod = 1e9+7;
 
-        void space() {{
-            {}
+      void space() {{
+          {}
 
-        }}
+      }}
 
-        int main() {{
-            ios::sync_with_stdio(false);
-            cin.tie(nullptr);
+      int main() {{
+          ios::sync_with_stdio(false);
+          cin.tie(nullptr);
 
-            int t = 1;
-            cin >> t;
+          int t = 1;
+          cin >> t;
 
-            while (t--) {{
-                space();
-                cout << '\n';
-            }}
-            return 0;
-        }}
-        ]], {i(0)}
-        )
-    ),
+          while (t--) {{
+              space();
+              cout << '\n';
+          }}
+          return 0;
+      }}
+      ]], {i(0)}
+      )
+  ),
 
-    s({ trig = "sieve", dscr = "sieve of primes" },
-        fmt([[
-        int MAXN = 1e7+1;
-        vector<bool> primes(MAXN+1, true);
-        primes[0] = 0; primes[1] = 0;
+  s({ trig = "sieve", dscr = "sieve of primes" },
+      fmt([[
+      int MAXN = 1e7+1;
+      vector<bool> primes(MAXN+1, true);
+      primes[0] = 0; primes[1] = 0;
 
-        for (int i = 2; i*i <= MAXN; i++) {{
-	        if (primes[i]) {{ //prime found
-		        for (int j=i*i; j<=MAXN; j+=i) primes[j] = false;
-            }}
-	    }}
-        ]], {})
-    ),
+      for (int i = 2; i*i <= MAXN; i++) {{
+       if (primes[i]) {{ //prime found
+        for (int j=i*i; j<=MAXN; j+=i) primes[j] = false;
+          }}
+      }}
+      ]], {})
+  ),
 
-    s({ trig = "usaco", dscr = "usaco template" },
-        fmt([[
-        #include <bits/stdc++.h>
-        using namespace std;
+  s({ trig = "usaco", dscr = "usaco template" },
+      fmt([[
+      #include <bits/stdc++.h>
+      using namespace std;
 
-        typedef long long ll;
-        #define pb push_back
-    
-        void setIO(string name = "") {{
-            ios_base::sync_with_stdio(0);
-            cin.tie(0);
-            if (name.size()) {{
-                freopen((name + ".in").c_str(), "r", stdin);
-                freopen((name + ".out").c_str(), "w", stdout);
-            }}
-        }}
-        
-        int main() {{
-            ios::sync_with_stdio(0);
-            cin.tie(0); cout.tie(0);
-        
-            setIO("filename");
-        
-            {}
+      typedef long long ll;
+      #define pb push_back
+  
+      void setIO(string name = "") {{
+          ios_base::sync_with_stdio(0);
+          cin.tie(0);
+          if (name.size()) {{
+              freopen((name + ".in").c_str(), "r", stdin);
+              freopen((name + ".out").c_str(), "w", stdout);
+          }}
+      }}
+      
+      int main() {{
+          ios::sync_with_stdio(0);
+          cin.tie(0); cout.tie(0);
+      
+          setIO("filename");
+      
+          {}
 
-        
-            return 0;
-        }}
-        ]], {i(0)}
-        )
-    ),
+      
+          return 0;
+      }}
+      ]], {i(0)}
+      )
+  ),
 
-    s({ trig = "simple", dscr = "default cpp template" },
-        fmt([[
+  s({ trig = "simple", dscr = "default cpp template" },
+      fmt([[
 
-        #include <bits/stdc++.h>
-        using namespace std;
+      #include <bits/stdc++.h>
+      using namespace std;
 
-        typedef long long ll;
-        #define pb push_back
-        const int mod = 1e9+7;
-        
-        int main() {{
-            ios::sync_with_stdio(false);
-            cin.tie(nullptr);
+      typedef long long ll;
+      #define pb push_back
+      const int mod = 1e9+7;
+      
+      int main() {{
+          ios::sync_with_stdio(false);
+          cin.tie(nullptr);
 
-            {}
+          {}
 
-            return 0;
-        }}
-        ]], { i(0) }
-        )
-    ),
+          return 0;
+      }}
+      ]], { i(0) }
+      )
+  ),
 }
