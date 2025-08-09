@@ -1,20 +1,8 @@
-local ls = require("luasnip")
-local s = ls.snippet
---local sn = ls.snippet_node
---local t = ls.text_node
-local i = ls.insert_node
---local f = ls.function_node
---local d = ls.dynamic_node
-local fmt = require("luasnip.extras.fmt").fmt
---local fmta = require("luasnip.extras.fmt").fmta
---local rep = require("luasnip.extras").rep 
---local extras = require("luasnip.extras")
+---@diagnostic disable: undefined-global
 
-
--- cpp templates
 -- for cp
 return {
-  s({ trig = "lezzgo", dscr = "cp template" },
+  s({ trig = "lezzgo", snippetType = "autosnippet", dscr = "cp template" },
       fmt([[
       #include <bits/stdc++.h>
       using namespace std;
@@ -45,7 +33,7 @@ return {
       )
   ),
 
-  s({ trig = "sieve", dscr = "sieve of primes" },
+  s({ trig = "sieve", snippetType = "autosnippet", dscr = "sieve of primes" },
       fmt([[
       int MAXN = 1e7+1;
       vector<bool> primes(MAXN+1, true);
@@ -59,7 +47,7 @@ return {
       ]], {})
   ),
 
-  s({ trig = "usaco", dscr = "usaco template" },
+  s({ trig = "usaco", snippetType = "autosnippet", dscr = "usaco template" },
       fmt([[
       #include <bits/stdc++.h>
       using namespace std;
@@ -91,7 +79,7 @@ return {
       )
   ),
 
-  s({ trig = "simple", dscr = "default cpp template" },
+  s({ trig = "simple", snippetType = "autosnippet", dscr = "default cpp template" },
       fmt([[
 
       #include <bits/stdc++.h>
