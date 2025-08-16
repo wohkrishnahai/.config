@@ -13,5 +13,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {import = "krishna.plugins"},
-    {import = "krishna.plugins.lsp"},
 })

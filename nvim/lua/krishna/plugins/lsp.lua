@@ -12,9 +12,9 @@ return {
 
 		local opts = { buffer = ev.buf, silent = true }
 		vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
-	  end,
+	  end
 	})
-	vim.opt.completeopt = { "menu", "menuone", "noselect" }
+	vim.opt.completeopt = {"menu", "menuone", "noselect"}
 
 	-- vim.diagnostic.config({
 	--   virtual_text = true,
@@ -22,13 +22,11 @@ return {
 
 	vim.lsp.enable({ "lua_ls", "clangd" })
     vim.lsp.config("lua_ls", {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = {"vim"}
-                }
-            }
+      settings = {
+	    Lua = {
+	      diagnostics = {globals = {"vim"}}
         }
+      }
     })
-  end,
+  end
 }

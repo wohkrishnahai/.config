@@ -1,36 +1,41 @@
 ---@diagnostic disable: undefined-global
 
--- for cp
 return {
+-- for cp
   s({ trig = "lezzgo", snippetType = "autosnippet", dscr = "cp template" },
-      fmt([[
-      #include <bits/stdc++.h>
-      using namespace std;
+    fmt([[
+	#include <bits/stdc++.h>
+	using namespace std;
 
-      typedef long long ll;
-      #define pb push_back 
-      const int mod = 1e9+7;
+	typedef long long ll;
+	#define pb push_back
+	const int N = 2e5+7;
+	const ll MOD = 1e9+7;
+	const ll INF = 1e15;
 
-      void space() {{
-          {}
+	// vector<int> adj[N];
+	// vector<bool> vis(N);
 
-      }}
+	void space() {{
+		{}
 
-      int main() {{
-          ios::sync_with_stdio(false);
-          cin.tie(nullptr);
+	}}
 
-          int t = 1;
-          cin >> t;
+	int main() {{
+		ios::sync_with_stdio(false);
+		cin.tie(nullptr);
 
-          while (t--) {{
-              space();
-              cout << '\n';
-          }}
-          return 0;
-      }}
-      ]], {i(0)}
-      )
+		int t = 1;
+		cin >> t;
+
+		while (t--) {{
+			space();
+			cout << '\n';
+		}}
+		return 0;
+	}}
+	]], {i(0)}
+    )
   ),
 
   s({ trig = "sieve", snippetType = "autosnippet", dscr = "sieve of primes" },
@@ -85,10 +90,6 @@ return {
       #include <bits/stdc++.h>
       using namespace std;
 
-      typedef long long ll;
-      #define pb push_back
-      const int mod = 1e9+7;
-      
       int main() {{
           ios::sync_with_stdio(false);
           cin.tie(nullptr);
