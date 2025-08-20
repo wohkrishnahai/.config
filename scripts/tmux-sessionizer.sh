@@ -1,34 +1,29 @@
-#!/usr/bin/env bash
+#! /bin/bash
+
+DIRS=(
+	"$HOME/documents"
+	"$HOME"
+	"$HOME/documents/vault"
+	"$HOME/documents/projects"
+)
 
 if [[ $# -eq 1 ]]; then
-    selected=$1
+	selected=$1
 else
-    selected=$(find ~/documents/vault ~/ ~/documents/programming -mindepth 1 -maxdepth 1 -type d | \
-        sed "s|^$HOME/||" | \
-        fzf-tmux -p 80%,60%
-    )
-    # Add home path back
-    if [[ -n "$selected" ]]; then
-        selected="$HOME/$selected"
-    fi
+	selected=$(find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d | \
+		sed "s|^$HOME/||" | \
+		fzf-tmux -p 80%,60%)
+
+    [[ $selected ]] && selected="$HOME/$selected"
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
-fi
+[[ ! $selected ]] && exit 0 
 
 selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
+if ! tmux has-session -t "$selected_name"; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+    tmux select-window -t "$selected_name:1"
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected 
-    # select first window
-    tmux select-window -t $selected_name:1
-fi
-
-tmux switch-client -t $selected_name
+tmux switch-client -t "$selected_name"

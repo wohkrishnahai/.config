@@ -1,13 +1,6 @@
-#!/usr/bin/env bash
+#! /bin/bash
 
-# Open the current repository in the browser
-dir=$(tmux run "echo #{pane_start_path}")
-cd $dir
+cd $(tmux run "echo #{pane_start_path}")
 url=$(git remote get-url origin) 
 
-# Check if the repository is on GitHub
-if [[ $url == *"github.com"* ]]; then
-  open $url
-else
-  echo "This repository is not hosted on GitHub"
-fi
+open $url || echo "No remote found"
