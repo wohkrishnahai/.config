@@ -4,7 +4,6 @@ PS1="%{$fg[blue]%}%~%{$fg[red]%} %{$reset_color%}$%b "
 ## History in cache directory
 SAVEHIST=1000
 HISTSIZE=1000
-source <(fzf --zsh)
 
 finder() {
 	open .
@@ -24,6 +23,7 @@ zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 
 export PATH="/opt/homebrew/bin:$PATH"
+source <(fzf --zsh)
 # Load zsh-syntax-highlighting; should be last.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
