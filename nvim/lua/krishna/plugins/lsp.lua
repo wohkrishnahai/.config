@@ -5,7 +5,6 @@ return {
   config = function()
     require("mason").setup()
 
-	-- omnifucn completion - <c-x><c-o>
 	vim.api.nvim_create_autocmd("LspAttach", {
 	  callback = function(ev)
 		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -14,19 +13,34 @@ return {
 		vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
 	  end
 	})
-	vim.opt.completeopt = {"menu", "menuone", "noselect"}
+	vim.opt.completeopt = {"menu", "menuone"}
 
 	-- vim.diagnostic.config({
 	--   virtual_text = true,
 	-- })
 
-	vim.lsp.enable({ "lua_ls", "clangd" })
+	vim.lsp.enable({ "lua_ls", "clangd", "emmet_language_server" })
+
     vim.lsp.config("lua_ls", {
       settings = {
-	    Lua = {
-	      diagnostics = {globals = {"vim"}}
-        }
+	    Lua = { diagnostics = { globals = { "vim" } } }
       }
     })
+
+	vim.lsp.config("emmet_language_server", {
+	  filetypes = {
+		"html", "css",
+	  },
+	  init_options = {
+		showAbbreviationSuggestions = true,
+		showExpandedAbbreviation = "always",
+		showSuggestionsAsSnippets = true,
+		html = {
+		  output = {
+			selfClosingStyle = "html", -- or "xml"
+		  },
+		},
+	  },
+	})
   end
 }
