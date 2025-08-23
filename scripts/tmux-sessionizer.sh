@@ -12,7 +12,7 @@ if [[ $# -eq 1 ]]; then
 else
 	selected=$(find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d | \
 		sed "s|^$HOME/||" | \
-		fzf-tmux -p 80%,60%)
+		fzf-tmux)
 
     [[ $selected ]] && selected="$HOME/$selected"
 fi
