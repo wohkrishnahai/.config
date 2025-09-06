@@ -1,5 +1,4 @@
 #! /bin/bash
-
 DIRS=(
 	"$HOME/documents"
 	"$HOME"

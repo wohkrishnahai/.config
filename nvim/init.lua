@@ -6,11 +6,12 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
-vim.opt.smartcase = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.winborder = "rounded"
@@ -18,7 +19,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
 
 vim.g.mapleader = " "
--- vim.keymap.set('n', '<leader>r', ':update<CR> :make<CR>')  -- Run cmd
 vim.keymap.set('n', '<leader>v', ':e $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>z', ':e ~/.config/zsh/.zshrc<CR>')
 require("krishna.lazy")
@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
       local filepath = vim.fn.expand("%")    -- file name
       local filename = vim.fn.expand("%:r")  -- file name w/o ext
 
-      vim.cmd("update")  -- save file before running
+      vim.cmd("update")
       local cmd = string.format(
         "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",
         filepath, filename, filename

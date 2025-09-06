@@ -1,7 +1,7 @@
 autoload -U colors && colors
 PS1="%{$fg[blue]%}%~%{$fg[red]%} %{$reset_color%}$%b "
 
-## History in cache directory
+# History in cache directory
 SAVEHIST=1000
 HISTSIZE=1000
 
@@ -20,11 +20,10 @@ autoload -U compinit && compinit
 autoload -U colors && colors
 zmodload zsh/complist
 
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)	# Include hidden files.
 
 export PATH="/opt/homebrew/bin:$PATH"
 source <(fzf --zsh)
-# Load zsh-syntax-highlighting; should be last.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias vim=nvim

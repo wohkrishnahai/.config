@@ -15,9 +15,24 @@ return {
 	})
 	vim.opt.completeopt = {"menu", "menuone"}
 
-	-- vim.diagnostic.config({
-	--   virtual_text = true,
+	-- native LSP auto completion
+	-- vim.api.nvim_create_autocmd('LspAttach', {
+	-- 	group = vim.api.nvim_create_augroup('my.lsp', {}),
+	-- 	callback = function(args)
+	-- 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+	-- 		if client:supports_method('textDocument/completion') then
+	-- 			-- Optional: trigger autocompletion on EVERY keypress. (may be slow)
+	-- 			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+	-- 			client.server_capabilities.completionProvider.triggerCharacters = chars
+	-- 			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+	-- 		end
+	-- 	end,
 	-- })
+	-- vim.opt.completeopt:append {"menu, menuone, popup"}
+
+	vim.diagnostic.config({
+	  virtual_text = true,
+	})
 
 	vim.lsp.enable({ "lua_ls", "clangd", "emmet_language_server" })
 
@@ -26,21 +41,5 @@ return {
 	    Lua = { diagnostics = { globals = { "vim" } } }
       }
     })
-
-	vim.lsp.config("emmet_language_server", {
-	  filetypes = {
-		"html", "css",
-	  },
-	  init_options = {
-		showAbbreviationSuggestions = true,
-		showExpandedAbbreviation = "always",
-		showSuggestionsAsSnippets = true,
-		html = {
-		  output = {
-			selfClosingStyle = "html", -- or "xml"
-		  },
-		},
-	  },
-	})
   end
 }
