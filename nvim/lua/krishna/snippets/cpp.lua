@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 
 return {
--- for cp
+-- for CP 
   s({ trig = "lezzgo", snippetType = "autosnippet", dscr = "cp template" },
     fmt([[
 	#include <bits/stdc++.h>
@@ -12,7 +12,7 @@ return {
 	const int N = 2e5+7;
 	const ll MOD = 1e9+7;
 	const ll INF = 1e15;
-
+ 
 	// vector<int> adj[N];
 	// vector<bool> vis(N);
 
@@ -28,8 +28,9 @@ return {
 		int t = 1;
 		cin >> t;
 
-		while (t--) {{
+		for (int i = 1; i <= t; i++) {{
 			space();
+			// cout << "Case #" << i << ": ";
 			cout << '\n';
 		}}
 		return 0;
