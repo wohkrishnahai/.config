@@ -10,7 +10,7 @@ return {
 	  preview = { treesitter = false },
 	  sorting_strategy = "ascending",
   	  borders = true,
-      -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+      borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 	  path_displays = "smart",
       layout_config = {
 	    height = 100,

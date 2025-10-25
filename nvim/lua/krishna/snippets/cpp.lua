@@ -28,9 +28,8 @@ return {
 		int t = 1;
 		cin >> t;
 
-		for (int i = 1; i <= t; i++) {{
+		while (t--) {{
 			space();
-			// cout << "Case #" << i << ": ";
 			cout << '\n';
 		}}
 		return 0;
