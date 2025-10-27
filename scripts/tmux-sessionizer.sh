@@ -1,16 +1,16 @@
 #! /bin/bash
 DIRS=(
+	"$HOME/documents/projects"
+	"$HOME/documents/vault"
 	"$HOME/documents"
 	"$HOME"
-	"$HOME/documents/vault"
-	"$HOME/documents/projects"
 )
 
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d | \
-		sed "s|^$HOME/||" | \
+	selected=$(find . "${DIRS[@]}" --type=dir --max-depth=1 --full-path --base-directory $HOME \
+		| sed "s|^$HOME/||" \
 		fzf-tmux)
 
     [[ $selected ]] && selected="$HOME/$selected"

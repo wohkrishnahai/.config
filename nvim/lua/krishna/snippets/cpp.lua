@@ -10,7 +10,7 @@ return {
 	typedef long long ll;
 	#define pb push_back
 	const int N = 2e5+7;
-	const ll MOD = 1e9+7;
+	const int MOD = 1e9+7;
 	const ll INF = 1e15;
  
 	// vector<int> adj[N];
@@ -45,9 +45,9 @@ return {
       primes[0] = 0; primes[1] = 0;
 
       for (int i = 2; i*i <= MAXN; i++) {{
-       if (primes[i]) {{ //prime found
+      	if (primes[i]) {{ //prime found
         for (int j=i*i; j<=MAXN; j+=i) primes[j] = false;
-          }}
+      	}}
       }}
       ]], {})
   ),
@@ -60,7 +60,7 @@ return {
       typedef long long ll;
       #define pb push_back
   
-      void setIO(string name = "") {{
+      void setIO(string name) {{
           ios_base::sync_with_stdio(0);
           cin.tie(0);
           if (name.size()) {{
