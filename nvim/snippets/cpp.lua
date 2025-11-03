@@ -7,21 +7,20 @@ return {
 	#include <bits/stdc++.h>
 	using namespace std;
 
-	typedef long long ll;
-	#define pb push_back
-	const int N = 2e5+7;
+	#define int long long
+	const int N = 1e6+7;
+	const int INF = 1e15;
 	const int MOD = 1e9+7;
-	const ll INF = 1e15;
  
 	// vector<int> adj[N];
 	// vector<bool> vis(N);
 
 	void space() {{
-		{}
+		int {}
 
 	}}
 
-	int main() {{
+	int32_t main() {{
 		ios::sync_with_stdio(false);
 		cin.tie(nullptr);
 
@@ -46,7 +45,7 @@ return {
 
       for (int i = 2; i*i <= MAXN; i++) {{
       	if (primes[i]) {{ //prime found
-        for (int j=i*i; j<=MAXN; j+=i) primes[j] = false;
+        	for (int j=i*i; j<=MAXN; j+=i) primes[j] = false;
       	}}
       }}
       ]], {})

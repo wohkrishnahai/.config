@@ -70,11 +70,13 @@ require("lazy").setup({
             preview = {treesitter = false},
             sorting_strategy = "ascending",
             path_displays = "smart",
-            --   layout_config = {
-            --   height = 100,
-            --   width = 400,
-            --   preview_cutoff = 40,
-            -- }
+			borderchars = {"─", "│", "─", "│", "┌", "┐", "┘", "└"},
+            layout_config = {
+			  prompt_position = "top",
+              -- height = 100,
+              -- width = 400,
+              preview_cutoff = 40,
+            }
           }
         })
      	local builtin = require('telescope.builtin')
@@ -89,7 +91,10 @@ require("lazy").setup({
     { "saghen/blink.cmp", version = "1.*",
 	  config = function()
         require("blink.cmp").setup({
-          keymap = {preset = 'default'},
+          keymap = {
+			  preset = 'default',
+			  ['<CR>'] = {'accept', 'fallback'},
+		  },
           completion = {
       	    documentation = {auto_show = true},
    	      },
@@ -125,19 +130,19 @@ require("lazy").setup({
 	{ "neovim/nvim-lspconfig",
 	  config = function()
 
-       vim.api.nvim_create_autocmd('LspAttach', {
-         group = vim.api.nvim_create_augroup('my.lsp', {}),
-         callback = function(args)
-       	local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-       	if client:supports_method('textDocument/completion') then
-       	  --Trigger autocompletion on EVERY keypress
-       	  local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-       		client.server_capabilities.completionProvider.triggerCharacters = chars
-       		vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-       	  end
-       	end,
-       })
-       vim.cmd[[set completeopt+=menuone,noselect,popup]]
+       -- vim.api.nvim_create_autocmd('LspAttach', {
+       --   group = vim.api.nvim_create_augroup('my.lsp', {}),
+       --   callback = function(args)
+       -- 	local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+       -- 	if client:supports_method('textDocument/completion') then
+       -- 	  --Trigger autocompletion on EVERY keypress
+       -- 	  local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+       -- 		client.server_capabilities.completionProvider.triggerCharacters = chars
+       -- 		vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+       -- 	  end
+       -- 	end,
+       -- })
+       -- vim.cmd[[set completeopt+=menuone,noselect,popup]]
 
        vim.diagnostic.config({
          virtual_text = true,
@@ -167,7 +172,7 @@ require("lazy").setup({
 })
 
 
--- Run Cmd cpp
+-- Run Cmd for cpp
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "cpp",
   callback = function()
