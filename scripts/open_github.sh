@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+# cd $(tmux run "echo #{pane_start_path}")
 cd "$(tmux display-message -p '#{pane_current_path}')"
 url=$(git remote get-url origin) 
 

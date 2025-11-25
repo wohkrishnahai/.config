@@ -20,6 +20,7 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
+# alt-shift-h = 'move-mouse monitor-force-center'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
