@@ -9,14 +9,11 @@ return {
 
 	#define int long long
 	const int N = 1e6+7;
-	const int INF = 1e15;
 	const int MOD = 1e9+7;
  
-	// vector<int> adj[N];
-	// vector<bool> vis(N);
-
 	void space() {{
-		int {}
+		int n{}
+
 
 	}}
 
