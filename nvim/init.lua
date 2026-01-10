@@ -15,8 +15,8 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>v', ':e $MYVIMRC<CR>')
-vim.keymap.set('n', '<leader>z', ':e ~/.config/zsh/.zshrc<CR>')
+vim.keymap.set('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
+vim.keymap.set('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
 vim.keymap.set('n', '<C-f>', '<Cmd>Open .<CR>')
 
 -- Lazy Setup
@@ -123,6 +123,15 @@ require("lazy").setup({
 	  end,
 	},
 
+	-- TypstPreview
+	{ "chomosuke/typst-preview.nvim",
+      config = function()
+		require("typst-preview").setup()
+		vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
+	  end,
+	},
+
+
 	-- LSP
 	{ "neovim/nvim-lspconfig",
 	  config = function()
@@ -147,13 +156,20 @@ require("lazy").setup({
 
        vim.lsp.enable({
          "lua_ls", "clangd",
-         "emmet_language_server", --"cssls", "tailwindcss", "ts_ls" 
+         "emmet_language_server", --"cssls", "tailwindcss", "ts_ls",
+		 "tinymist",
        })
 
-       vim.lsp.config("lua_ls", {
-         settings = { Lua = {diagnostics = {globals = {"vim"}}}}
-       })
-	  end,
+	   vim.lsp.config["lua_ls"] = {
+         settings = {Lua = {diagnostics = {globals = {"vim"}}}}
+	   }
+
+	   vim.lsp.config["tinymist"] = {
+    	 cmd = {"tinymist"},
+    	 filetypes = {"typst"},
+		 settings = {formatterMode = "typstyle"},
+	   }
+   	   end,
 	},
 
 	-- Luasnip

@@ -6,13 +6,10 @@ return {
     fmt([[
 	#include <bits/stdc++.h>
 	using namespace std;
-
 	#define int long long
-	const int N = 1e6+7;
-	const int MOD = 1e9+7;
  
 	void space() {{
-		int n{}
+		int {}
 
 
 	}}
