@@ -9,6 +9,7 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 vim.opt.ignorecase = true
 vim.opt.smartindent = true
 vim.opt.splitright = true
@@ -85,16 +86,16 @@ require("lazy").setup({
 	},
 
 	-- Blink
-    { "saghen/blink.cmp", version = "1.*",
+	   { "saghen/blink.cmp", version = "1.*",
 	  config = function()
-        require("blink.cmp").setup({
-          keymap = {
+	       require("blink.cmp").setup({
+	         keymap = {
 			  preset = 'default',
 			  ['<CR>'] = {'accept', 'fallback'},
 		  },
-          completion = {
-      	    documentation = {auto_show = true},
-   	      },
+	         completion = {
+	     	    documentation = {auto_show = true},
+	  	      },
 	    })
 	  end,
 	},
@@ -198,9 +199,9 @@ vim.api.nvim_create_autocmd("FileType", {
         "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",
         filepath, filename, filename
       )
-      local output = vim.fn.system(cmd)
-      print(output)
+
+      vim.fn.system(cmd)
       vim.cmd("checktime")
-    end, { buffer = true })
+    end, {buffer = true})
   end,
 })

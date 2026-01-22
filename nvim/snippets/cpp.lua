@@ -4,74 +4,57 @@ return {
 -- for CP 
   s({ trig = "lezzgo", snippetType = "autosnippet", dscr = "cp template" },
     fmt([[
-	#include <bits/stdc++.h>
-	using namespace std;
-	#define int long long
- 
-	void space() {{
-		int {}
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+void space() {{
+    int {}
 
 
-	}}
+}}
 
-	int32_t main() {{
-		ios::sync_with_stdio(false);
-		cin.tie(nullptr);
+int32_t main() {{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-		int t = 1;
-		cin >> t;
+    int t = 1;
+    cin >> t;
 
-		while (t--) {{
-			space();
-			cout << '\n';
-		}}
-		return 0;
-	}}
-	]], {i(0)}
-    )
-  ),
-
-  s({ trig = "sieve", snippetType = "autosnippet", dscr = "sieve of primes" },
-      fmt([[
-      int MAXN = 1e6+7;
-      vector<bool> primes(MAXN+1, 1);
-      primes[0] = 0; primes[1] = 0;
-
-      for (int i = 2; i*i <= MAXN; i++) {{
-      	if (primes[i]) {{ //prime found
-        	for (int j=i*i; j<=MAXN; j+=i) primes[j] = false;
-      	}}
-      }}
-      ]], {})
-  ),
+    while (t--) {{
+        space();
+        cout << '\n';
+    }}
+    return 0;
+}}
+]], {i(0)}
+       )
+   ),
 
   s({ trig = "usaco", snippetType = "autosnippet", dscr = "usaco template" },
-      fmt([[
-      #include <bits/stdc++.h>
-      using namespace std;
-      typedef long long ll;
-  
-      void setIO(string name) {{
-          ios_base::sync_with_stdio(0);
-          cin.tie(0);
-          if (name.size()) {{
-              freopen((name + ".in").c_str(), "r", stdin);
-              freopen((name + ".out").c_str(), "w", stdout);
-          }}
-      }}
-      
-      int main() {{
-          ios::sync_with_stdio(0);
-          cin.tie(0); cout.tie(0);
-      
-          setIO("filename");
-      
-          {}
+    fmt([[
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll; 
 
-      
-          return 0;
-      }}
-      ]], {i(0)}
-      )
-  ),
+void setIO(string name) {{
+    if (name.size()) {{
+        freopen((name + ".in").c_str(), "r", stdin);
+        freopen((name + ".out").c_str(), "w", stdout);
+    }}
+}}
+
+int main() {{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    setIO("filename");
+
+    {}
+
+    return 0;
+}}
+]], {i(0)}
+       )
+   ),
 }
