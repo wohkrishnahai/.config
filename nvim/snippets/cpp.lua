@@ -2,59 +2,61 @@
 
 return {
 -- for CP 
-  s({ trig = "lezzgo", snippetType = "autosnippet", dscr = "cp template" },
+  s({trig = "lezzgo", snippetType = "autosnippet", dscr = "cp template"},
     fmt([[
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 
 void space() {{
-    int {}
+  int {}
 
 
 }}
 
 int32_t main() {{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
 
-    int t = 1;
-    cin >> t;
+  int t = 1;
+  cin >> t;
 
-    while (t--) {{
-        space();
-        cout << '\n';
-    }}
-    return 0;
+  while (t--) {{
+    space();
+    cout << '\n';
+  }}
+
+  return 0;
 }}
 ]], {i(0)}
-       )
-   ),
+    )
+  ),
 
-  s({ trig = "usaco", snippetType = "autosnippet", dscr = "usaco template" },
+  s({trig = "usaco", snippetType = "autosnippet", dscr = "usaco template"},
     fmt([[
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll; 
 
 void setIO(string name) {{
-    if (name.size()) {{
-        freopen((name + ".in").c_str(), "r", stdin);
-        freopen((name + ".out").c_str(), "w", stdout);
-    }}
+  if (name.size()) {{
+    freopen((name + ".in").c_str(), "r", stdin);
+    freopen((name + ".out").c_str(), "w", stdout);
+  }}
 }}
 
 int main() {{
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    setIO("filename");
+  setIO("filename");
+  
+  {}
+  
 
-    {}
-
-    return 0;
+  return 0;
 }}
 ]], {i(0)}
-       )
-   ),
+    )
+  ),
 }
