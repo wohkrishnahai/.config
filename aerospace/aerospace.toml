@@ -38,7 +38,7 @@ alt-3 = 'workspace 3' # terminal
 alt-4 = 'workspace 4' # pdf
 alt-5 = 'workspace 5' # msgs
 alt-6 = 'workspace 6' # misc.
-# alt-7 = 'workspace 7'
+alt-7 = 'workspace 7' # vm
 # alt-t = 'workspace T'  # terminal
 
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -47,7 +47,7 @@ alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
-# alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-7 = 'move-node-to-workspace 7'
 # alt-shift-T = 'move-node-to-workspace T'
 
 cmd-shift-f = 'fullscreen'
@@ -79,6 +79,10 @@ run = 'move-node-to-workspace 5'
 if.app-id = 'com.hnc.Discord'
 run = 'move-node-to-workspace 5'
 
+[[on-window-detected]]
+if.app-id = 'com.parallels.desktop.console'
+run = 'move-node-to-workspace 7'
+
 # floating tabs
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
@@ -86,4 +90,8 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Dictionary'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
 run = 'layout floating'

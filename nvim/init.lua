@@ -157,7 +157,7 @@ require("lazy").setup({
 
         vim.lsp.enable({
           "lua_ls", "clangd",
-          "emmet_language_server", --"cssls", "tailwindcss", "ts_ls",
+          "emmet_ls", "cssls", "emmet_language_server", -- "tailwindcss", "ts_ls",
 		      "tinymist",
         })
 
