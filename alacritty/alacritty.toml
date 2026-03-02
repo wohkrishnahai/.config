@@ -12,7 +12,7 @@ style = "Regular"
 # style = "Bold"
 
 [window]
-opacity = 0.91
+opacity = 0.95
 decorations = "none"
 dynamic_padding = true
 option_as_alt = "Both"
@@ -37,7 +37,7 @@ key = "Minus"
 mods = "Command"
 
 
-# Vague for Alacritty
+# Vague Theme
 [colors.primary]
 background = '#141415'
 foreground = '#cdcdcd'

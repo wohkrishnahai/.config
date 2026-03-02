@@ -59,130 +59,132 @@ require("lazy").setup({
 	},
 
 	-- Telescope
-    { "nvim-telescope/telescope.nvim",
-	    dependencies = {"nvim-lua/plenary.nvim"},
+  { "nvim-telescope/telescope.nvim",
+	  dependencies = {"nvim-lua/plenary.nvim"},
 
-      config = function()
-        require('telescope').setup({
-          defaults = {
-            preview = {treesitter = false},
-            sorting_strategy = "ascending",
-            path_displays = "smart",
-			      borderchars = {"", "", "", "", "", "", "", ""},
-            layout_config = {
-			        prompt_position = "top",
-              -- height = 100,
-              -- width = 400,
-              preview_cutoff = 40,
-            }
+    config = function()
+      require('telescope').setup({
+        defaults = {
+          preview = {treesitter = false},
+          sorting_strategy = "ascending",
+          path_displays = "smart",
+          borderchars = {"", "", "", "", "", "", "", ""},
+          layout_config = {
+            prompt_position = "top",
+            -- height = 100,
+            -- width = 400,
+            preview_cutoff = 40,
           }
-        })
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>f', builtin.find_files)
-        vim.keymap.set('n', '<leader>g', builtin.live_grep)
-        vim.keymap.set('n', '<leader>b', builtin.buffers)
-        vim.keymap.set('n', '<leader>h', builtin.help_tags)
-	    end,
-	},
+        }
+      })
+
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>f', builtin.find_files)
+      vim.keymap.set('n', '<leader>g', builtin.live_grep)
+      vim.keymap.set('n', '<leader>b', builtin.buffers)
+      vim.keymap.set('n', '<leader>h', builtin.help_tags)
+    end,
+  },
 
 	-- Blink
-    { "saghen/blink.cmp", version = "1.*",
-      config = function()
-	      require("blink.cmp").setup({
-	        keymap = {
-            preset = 'default',
-            ['<CR>'] = {'accept', 'fallback'},
-		      },
-	        completion = {
-	     	    documentation = {auto_show = true},
-	  	    },
-	      })
-	    end,
-	},
+  { "saghen/blink.cmp", version = "1.*",
+	   config = function()
+	     require("blink.cmp").setup({
+	       keymap = {
+	         preset = 'default',
+	         ['<CR>'] = {'accept', 'fallback'},
+	       },
+	       completion = {
+	         documentation = {auto_show = true},
+	       },
+	     })
+	   end,
+  },
 
 	-- Autopair
-    { "windwp/nvim-autopairs", event = "InsertEnter",
-      config = function()
-        require("nvim-autopairs").setup({check_ts = true})
-      end,
-    },
+  { "windwp/nvim-autopairs", event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({check_ts = true})
+    end,
+  },
 
 	-- Mason
-    { "williamboman/mason.nvim",
-	    config = function()
-        require("mason").setup()
-	    end,
-	  },
+  { "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
 
 	-- Treesitter
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-	    config = function ()
-        require("nvim-treesitter.configs").setup({
-          auto_install = true,
-          highlight = {enable = true},
-        })
-	    end,
-	  },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
+    config = function ()
+      require("nvim-treesitter.configs").setup({
+        auto_install = true,
+        highlight = {enable = true},
+      })
+    end,
+  },
 
 	-- TypstPreview
-	  { "chomosuke/typst-preview.nvim",
-      config = function()
-		    require("typst-preview").setup()
-		    vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
-	    end,
-	  },
+  { "chomosuke/typst-preview.nvim",
+    config = function()
+      require("typst-preview").setup()
+      vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
+    end,
+  },
 
 
 	-- LSP
-	  { "neovim/nvim-lspconfig",
-	    config = function()
+  { "neovim/nvim-lspconfig",
+    config = function()
+      vim.diagnostic.config({
+        virtual_text = true,
+      })
 
-        -- vim.api.nvim_create_autocmd('LspAttach', {
-        --   group = vim.api.nvim_create_augroup('my.lsp', {}),
-        --   callback = function(args)
-        --     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        --     if client:supports_method('textDocument/completion') then
-        --       -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-        --       local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-        --       client.server_capabilities.completionProvider.triggerCharacters = chars
-        --       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-        --     end
-        --   end,
-        -- })
-        -- vim.cmd [[set completeopt+=menuone,noselect,popup]]
+      vim.lsp.enable({
+        "lua_ls", "clangd",
+        "emmet_ls", "emmet_language_server", "cssls", -- "tailwindcss", "ts_ls",
+        "tinymist",
+      })
 
-        vim.diagnostic.config({
-          virtual_text = true,
-        })
+      vim.lsp.config["lua_ls"] = {
+        settings = {Lua = {diagnostics = {globals = {"vim"}}}}
+      }
 
-        vim.lsp.enable({
-          "lua_ls", "clangd",
-          "emmet_ls", "emmet_language_server", "cssls", -- "tailwindcss", "ts_ls",
-		      "tinymist",
-        })
+      vim.lsp.config["tinymist"] = {
+        cmd = {"tinymist"},
+        filetypes = {"typst"},
+        settings = {formatterMode = "typstyle"},
+      }
 
-	      vim.lsp.config["lua_ls"] = {
-          settings = {Lua = {diagnostics = {globals = {"vim"}}}}
-	      }
+      -- Native Autocompletion
+      -- vim.api.nvim_create_autocmd('LspAttach', {
+      --   group = vim.api.nvim_create_augroup('my.lsp', {}),
+      --   callback = function(args)
+      --     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+      --     if client:supports_method('textDocument/completion') then
+      --       -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+      --       local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+      --       client.server_capabilities.completionProvider.triggerCharacters = chars
+      --       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+      --     end
+      --   end,
+      -- })
+      -- vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
-	      vim.lsp.config["tinymist"] = {
-    	    cmd = {"tinymist"},
-    	    filetypes = {"typst"},
-		      settings = {formatterMode = "typstyle"},
-	      }
-      end,
-    },
-
-	-- Luasnip
-    { "L3MON4D3/LuaSnip", build = "make install_jsregexp",
-      config = function()
-        require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
-     	  local ls = require("luasnip")
-        ls.config.setup({enable_autosnippets = true})
-        vim.keymap.set("i", "<C-e>", function() ls.expand_or_jump(1) end, {silent = true})
-	    end,
-    },
+    end,
   },
+
+-- Luasnip
+  { "L3MON4D3/LuaSnip", build = "make install_jsregexp",
+    config = function()
+      require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
+      local ls = require("luasnip")
+      ls.config.setup({enable_autosnippets = true})
+      vim.keymap.set("i", "<C-e>", function() ls.expand_or_jump(1) end, {silent = true})
+    end,
+  },
+},
 })
 
 
@@ -195,13 +197,27 @@ vim.api.nvim_create_autocmd("FileType", {
       local filename = vim.fn.expand("%:r")
 
       vim.cmd("update")
-      local cmd = string.format(
-        "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",
-        filepath, filename, filename
-      )
+      print("Compiling...")
 
-      vim.fn.system(cmd)
-      vim.cmd("checktime")
-    end, {buffer = true})
+      local cmd = {
+        "sh", "-c",
+        string.format(
+          "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",
+          filepath, filename, filename
+        )
+      }
+
+      vim.system(cmd, {text = true}, function(obj)
+        vim.schedule(function()
+          vim.cmd("checktime")
+
+          if obj.code ~= 0 then
+            vim.notify("Execution Failed!", vim.log.levels.WARN)
+          else
+            vim.notify("Execution Successful!", vim.log.levels.INFO)
+          end
+        end)
+      end)
+    end, {buffer = true, desc = "RunCmd Logic"})
   end,
 })
