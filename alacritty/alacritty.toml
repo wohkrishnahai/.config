@@ -2,24 +2,17 @@
 TERM = "xterm-256color"
 
 [font]
-size = 21
+size = 22
 
 [font.normal]
 family = "FiraCode Nerd Font"
 style = "Regular"
 
-# [font.bold]
-# style = "Bold"
-
 [window]
-opacity = 0.95
+opacity = 0.97
 decorations = "none"
 dynamic_padding = true
 option_as_alt = "Both"
-
-[window.padding]
-x = 0
-y = 0
 
 [[keyboard.bindings]]
 action = "ResetFontSize"

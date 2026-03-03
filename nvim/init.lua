@@ -16,9 +16,10 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.g.mapleader = " "
+-- vim.keymap.set('n', '<leader>r', '<Cmd>make<CR>')
+vim.keymap.set('n', '<C-f>', '<Cmd>Open .<CR>')
 vim.keymap.set('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
-vim.keymap.set('n', '<C-f>', '<Cmd>Open .<CR>')
 
 -- Lazy Setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -188,7 +189,7 @@ require("lazy").setup({
 })
 
 
--- Run Cmd for cpp
+-- RunCmd for cpp
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "cpp",
   callback = function()
@@ -202,7 +203,8 @@ vim.api.nvim_create_autocmd("FileType", {
       local cmd = {
         "sh", "-c",
         string.format(
-          "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",
+          -- "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",  -- w/ error redirection
+          "g++-15 -std=c++17 %s -o %s && gtimeout 4s ./%s < inputf.in > outputf.in",
           filepath, filename, filename
         )
       }
@@ -212,12 +214,14 @@ vim.api.nvim_create_autocmd("FileType", {
           vim.cmd("checktime")
 
           if obj.code ~= 0 then
-            vim.notify("Execution Failed!", vim.log.levels.WARN)
+            -- vim.notify("Execution Failed!", vim.log.levels.WARN)  -- w/ error redirection
+            local error_msg = obj.stderr ~= "" and obj.stderr or "Check Compiler Message!"
+            vim.notify("Execution Failed!\n" .. error_msg, vim.log.levels.WARN)
           else
             vim.notify("Execution Successful!", vim.log.levels.INFO)
           end
         end)
       end)
-    end, {buffer = true, desc = "RunCmd Logic"})
+    end, {buffer = true, desc = "RunCmd"})
   end,
 })
