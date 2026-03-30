@@ -2,9 +2,9 @@ vim.opt.termguicolors = true
 vim.opt.winborder = "rounded"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
+vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.wrap = false
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 2
@@ -21,172 +21,139 @@ vim.keymap.set('n', '<C-f>', '<Cmd>Open .<CR>')
 vim.keymap.set('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
 
--- Lazy Setup
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({"git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath})
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      {"Failed to clone lazy.nvim:\n", "ErrorMsg"},
-      {out, "WarningMsg"},
-      {"\nPress any key to exit..."},
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
 -- Plugins
-require("lazy").setup({
-  spec = {
-    "nvim-tree/nvim-web-devicons",
+vim.pack.add({
+  {src = "https://github.com/vague2k/vague.nvim"},
+	{src = "https://github.com/stevearc/oil.nvim"},
+	{src = "https://github.com/nvim-tree/nvim-web-devicons"},
+	{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
+	{src = "https://github.com/neovim/nvim-lspconfig"},
+	{src = "https://github.com/mason-org/mason.nvim"},
+	{src = "https://github.com/nvim-telescope/telescope.nvim", branch = "master"},
+	{src = "https://github.com/nvim-lua/plenary.nvim"},
+	{src = "https://github.com/L3MON4D3/LuaSnip"},
+	{src = "https://github.com/chomosuke/typst-preview.nvim"},
+	-- {src = "https://github.com/saghen/blink.cmp"},
+	{src = "https://github.com/windwp/nvim-autopairs"},
+})
 
-	-- Colorscheme
-	{ "vague2k/vague.nvim",
-	  config = function()
-      require("vague").setup({transparent = true})
-      vim.cmd("colorscheme vague")
-    end,
-	},
+require("vague").setup({transparent = true})
+vim.cmd("colorscheme vague")
 
-	-- Oil
-	{ "stevearc/oil.nvim",
-    config = function()
-      require("oil").setup()
-      vim.keymap.set('n', '<leader>e', "<Cmd>Oil<CR>")
-	  end,
-	},
+require("oil").setup()
+vim.keymap.set('n', '<leader>e', "<Cmd>Oil<CR>")
 
-	-- Telescope
-  { "nvim-telescope/telescope.nvim",
-	  dependencies = {"nvim-lua/plenary.nvim"},
-
-    config = function()
-      require('telescope').setup({
-        defaults = {
-          preview = {treesitter = false},
-          sorting_strategy = "ascending",
-          path_displays = "smart",
-          borderchars = {"", "", "", "", "", "", "", ""},
-          layout_config = {
-            prompt_position = "top",
-            -- height = 100,
-            -- width = 400,
-            preview_cutoff = 40,
-          }
-        }
-      })
-
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>f', builtin.find_files)
-      vim.keymap.set('n', '<leader>g', builtin.live_grep)
-      vim.keymap.set('n', '<leader>b', builtin.buffers)
-      vim.keymap.set('n', '<leader>h', builtin.help_tags)
-    end,
+require("telescope").setup({
+  defaults = {
+    preview = {treesitter = false},
+    path_displays = "smart",
+    borderchars = {"", "", "", "", "", "", "", ""},
+    layout_config = { preview_cutoff = 40, },
   },
+})
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files)
+vim.keymap.set('n', '<leader>g', builtin.live_grep)
+vim.keymap.set('n', '<leader>b', builtin.buffers)
+vim.keymap.set('n', '<leader>h', builtin.help_tags)
 
-	-- Blink
-  { "saghen/blink.cmp", version = "1.*",
-	   config = function()
-	     require("blink.cmp").setup({
-	       keymap = {
-	         preset = 'default',
-	         ['<CR>'] = {'accept', 'fallback'},
-	       },
-	       completion = {
-	         documentation = {auto_show = true},
-	       },
-	     })
-	   end,
-  },
+-- Completion
+-- require("blink.cmp").setup({
+--   keymap = {
+--     preset = 'default',
+--     ['<CR>'] = {'accept', 'fallback'},
+--   },
+--   completion = {
+--    documentation = {auto_show = true},
+--   },
+-- })
+require("nvim-autopairs").setup({check_ts = true})
 
-	-- Autopair
-  { "windwp/nvim-autopairs", event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup({check_ts = true})
-    end,
-  },
-
-	-- Mason
-  { "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
-  },
-
-	-- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-    config = function ()
-      require("nvim-treesitter.configs").setup({
-        auto_install = true,
-        highlight = {enable = true},
-      })
-    end,
-  },
-
-	-- TypstPreview
-  { "chomosuke/typst-preview.nvim",
-    config = function()
-      require("typst-preview").setup()
-      vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
-    end,
-  },
+require("typst-preview").setup()
+vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
 
 
-	-- LSP
-  { "neovim/nvim-lspconfig",
-    config = function()
-      vim.diagnostic.config({
-        virtual_text = true,
-      })
+-- LSP
+require("mason").setup()
 
-      vim.lsp.enable({
-        "lua_ls", "clangd",
-        "emmet_ls", "emmet_language_server", "cssls", -- "tailwindcss", "ts_ls",
-        "tinymist",
-      })
+-- vim.api.nvim_create_autocmd('FileType', {
+-- 	pattern = {
+--     'lua', 'markdown', 'typst',
+--     'cpp', 'javascript', "react",
+--     -- 'python', 'typescript', "typescriptreact",
+--   },
+-- 	callback = function() vim.treesitter.start() end,
+-- })
 
-      vim.lsp.config["lua_ls"] = {
-        settings = {Lua = {diagnostics = {globals = {"vim"}}}}
-      }
+vim.diagnostic.config({
+  virtal_text = true,
+})
 
-      vim.lsp.config["tinymist"] = {
-        cmd = {"tinymist"},
-        filetypes = {"typst"},
-        settings = {formatterMode = "typstyle"},
-      }
+vim.lsp.enable({
+  "lua_ls", "clangd", "tinymist",
+  "emmet_ls", "emmet_language_server", "cssls", -- "tailwindcss", "ts_ls",
+})
 
-      -- Native Autocompletion
-      -- vim.api.nvim_create_autocmd('LspAttach', {
-      --   group = vim.api.nvim_create_augroup('my.lsp', {}),
-      --   callback = function(args)
-      --     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-      --     if client:supports_method('textDocument/completion') then
-      --       -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-      --       local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-      --       client.server_capabilities.completionProvider.triggerCharacters = chars
-      --       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-      --     end
-      --   end,
-      -- })
-      -- vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
-    end,
-  },
+vim.lsp.config("lua_ls", {
+  settings = {Lua = {diagnostics = {globals = {"vim"}}}}
+})
+
+vim.lsp.config("tinymist", {
+  cmd = {"tinymist"},
+  filetypes = {"typst"},
+  settings = {formatterMode = "typstyle"},
+})
+
+-- Native Autocompletion
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('my.lsp', {}),
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if client:supports_method('textDocument/completion') then
+			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
+			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+			client.server_capabilities.completionProvider.triggerCharacters = chars
+			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+		end
+	end,
+})
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
 
 -- Luasnip
-  { "L3MON4D3/LuaSnip", build = "make install_jsregexp",
-    config = function()
-      require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
-      local ls = require("luasnip")
-      ls.config.setup({enable_autosnippets = true})
-      vim.keymap.set("i", "<C-e>", function() ls.expand_or_jump(1) end, {silent = true})
-    end,
-  },
-},
-})
+local ls = require("luasnip")
+ls.setup({enable_autosnippets = true})
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
+vim.keymap.set("i", "<C-e>", function() ls.expand_or_jump(1) end, {silent = true})
+
+-- Unused Plugins Mgmt
+local function pack_clean()
+	local active_plugins = {}
+	local unused_plugins = {}
+
+	for _, plugin in ipairs(vim.pack.get()) do
+		active_plugins[plugin.spec.name] = plugin.active
+	end
+
+	for _, plugin in ipairs(vim.pack.get()) do
+		if not active_plugins[plugin.spec.name] then
+			table.insert(unused_plugins, plugin.spec.name)
+		end
+	end
+
+	if #unused_plugins == 0 then
+		print("No unused plugins.")
+		return
+	end
+
+	local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
+	if choice == 1 then
+		vim.pack.del(unused_plugins)
+	end
+end
+
+vim.keymap.set("n", "<leader>pc", pack_clean)
 
 
 -- RunCmd for cpp
