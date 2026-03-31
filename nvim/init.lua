@@ -29,7 +29,7 @@ vim.pack.add({
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
 	{src = "https://github.com/neovim/nvim-lspconfig"},
 	{src = "https://github.com/mason-org/mason.nvim"},
-	{src = "https://github.com/nvim-telescope/telescope.nvim", branch = "master"},
+	{src = "https://github.com/nvim-telescope/telescope.nvim", version = "0.1.8"},
 	{src = "https://github.com/nvim-lua/plenary.nvim"},
 	{src = "https://github.com/L3MON4D3/LuaSnip"},
 	{src = "https://github.com/chomosuke/typst-preview.nvim"},
@@ -76,18 +76,25 @@ vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
 -- LSP
 require("mason").setup()
 
--- vim.api.nvim_create_autocmd('FileType', {
--- 	pattern = {
---     'lua', 'markdown', 'typst',
---     'cpp', 'javascript', "react",
---     -- 'python', 'typescript', "typescriptreact",
---   },
--- 	callback = function() vim.treesitter.start() end,
+require("nvim-treesitter").setup()
+-- Auto-install Parsers
+-- require("nvim-treesitter").install({
+--   'lua', 'markdown', 'typst', 'c', 'cpp', -- 'python',
+--   'javascript', -- 'tsx', 'typescript', 
 -- })
 
-vim.diagnostic.config({
-  virtal_text = true,
+-- Highlighting
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = {
+    'lua', 'markdown', 'typst', 'cpp', -- 'c', 'python',
+    'javascript', -- 'react', 'typescriptreact', 'typescript'
+  },
+	callback = function()
+    vim.treesitter.start()
+  end,
 })
+
+vim.diagnostic.config({virtal_text = true,})
 
 vim.lsp.enable({
   "lua_ls", "clangd", "tinymist",

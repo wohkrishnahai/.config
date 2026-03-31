@@ -35,7 +35,8 @@
     },
     "telescope.nvim": {
       "rev": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
-      "src": "https://github.com/nvim-telescope/telescope.nvim"
+      "src": "https://github.com/nvim-telescope/telescope.nvim",
+      "version": "'0.1.8'"
     },
     "typst-preview.nvim": {
       "rev": "5f3068df703a40fa4b8ac1c13a7d18ed78483be9",
