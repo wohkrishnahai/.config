@@ -38,7 +38,7 @@ vim.pack.add({
 })
 
 require("vague").setup({transparent = true})
-vim.cmd("colorscheme vague")
+vim.cmd.colorscheme("vague")
 
 require("oil").setup()
 vim.keymap.set('n', '<leader>e', "<Cmd>Oil<CR>")
@@ -54,8 +54,11 @@ require("telescope").setup({
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>f', builtin.find_files)
 vim.keymap.set('n', '<leader>g', builtin.live_grep)
-vim.keymap.set('n', '<leader>b', builtin.buffers)
-vim.keymap.set('n', '<leader>h', builtin.help_tags)
+vim.keymap.set('n', '<leader>sb', builtin.buffers)
+vim.keymap.set('n', '<leader>sh', builtin.help_tags)
+vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
+vim.keymap.set('n', '<leader>gs', builtin.git_status)
+vim.keymap.set('n', '<leader>sk', builtin.keymaps)
 
 -- Completion
 -- require("blink.cmp").setup({
@@ -94,7 +97,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.diagnostic.config({virtal_text = true,})
+vim.diagnostic.config({virtual_text = true,})
 
 vim.lsp.enable({
   "lua_ls", "clangd", "tinymist",
