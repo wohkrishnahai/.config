@@ -16,10 +16,16 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.g.mapleader = " "
--- vim.keymap.set('n', '<leader>r', '<Cmd>make<CR>')
-vim.keymap.set('n', '<C-f>', '<Cmd>Open .<CR>')
-vim.keymap.set('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
-vim.keymap.set('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
+vim.keymap.set("n", "<C-f>", "<Cmd>Open .<CR>")
+vim.keymap.set("n", "<leader>v", "<Cmd>e $MYVIMRC<CR>")
+vim.keymap.set("n", "<leader>z", "<Cmd>e ~/.config/zsh/.zshrc<CR>")
+vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", {noremap = true, silent = true})
+-- vim.keymap.set("n", "<leader>r", "<Cmd>make<CR>")
+
+-- Term keymaps
+vim.keymap.set({"n", "t"}, "<leader>st", "<Cmd>botright 5split<CR> <Cmd>term<CR>i", {desc = "Small Terminal at bottom"});
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {desc = "Enter Normal mode in terminal"})
+
 
 -- Plugins
 vim.pack.add({
@@ -128,7 +134,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
 	end,
 })
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
+vim.cmd [[set completeopt+=menuone,noinsert,popup]]
 
 
 -- Luasnip
