@@ -19,7 +19,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<C-f>", "<Cmd>Open .<CR>")
 vim.keymap.set("n", "<leader>v", "<Cmd>e $MYVIMRC<CR>")
 vim.keymap.set("n", "<leader>z", "<Cmd>e ~/.config/zsh/.zshrc<CR>")
-vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<ESC>", "<Cmd>nohlsearch<CR>", {noremap = true, silent = true})
 -- vim.keymap.set("n", "<leader>r", "<Cmd>make<CR>")
 
 -- Term keymaps
@@ -39,7 +39,6 @@ vim.pack.add({
 	{src = "https://github.com/nvim-lua/plenary.nvim"},
 	{src = "https://github.com/L3MON4D3/LuaSnip"},
 	{src = "https://github.com/chomosuke/typst-preview.nvim"},
-	-- {src = "https://github.com/saghen/blink.cmp"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
 })
 
@@ -66,16 +65,6 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
 vim.keymap.set('n', '<leader>gs', builtin.git_status)
 vim.keymap.set('n', '<leader>sk', builtin.keymaps)
 
--- Completion
--- require("blink.cmp").setup({
---   keymap = {
---     preset = 'default',
---     ['<CR>'] = {'accept', 'fallback'},
---   },
---   completion = {
---    documentation = {auto_show = true},
---   },
--- })
 require("nvim-autopairs").setup({check_ts = true})
 
 require("typst-preview").setup()
@@ -127,14 +116,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method('textDocument/completion') then
-			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
-			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+			-- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+			-- client.server_capabilities.completionProvider.triggerCharacters = chars
+			vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
 		end
 	end,
 })
-vim.cmd [[set completeopt+=menuone,noinsert,popup]]
+vim.opt.completeopt = {"menu", "menuone", "noinsert", "popup"}
 
 
 -- Luasnip
