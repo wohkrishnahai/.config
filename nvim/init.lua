@@ -26,6 +26,10 @@ vim.keymap.set("n", "<ESC>", "<Cmd>nohlsearch<CR>", {noremap = true, silent = tr
 vim.keymap.set({"n", "t"}, "<leader>st", "<Cmd>botright 5split<CR> <Cmd>term<CR>i", {desc = "Small Terminal at bottom"});
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {desc = "Enter Normal mode in terminal"})
 
+-- Tab Switching
+for i = 1, 8 do
+	vim.keymap.set({"n","t"}, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
+end
 
 -- Plugins
 vim.pack.add({
@@ -57,13 +61,14 @@ require("telescope").setup({
   },
 })
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>f', builtin.find_files)
-vim.keymap.set('n', '<leader>g', builtin.live_grep)
-vim.keymap.set('n', '<leader>sb', builtin.buffers)
-vim.keymap.set('n', '<leader>sh', builtin.help_tags)
-vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
-vim.keymap.set('n', '<leader>gs', builtin.git_status)
-vim.keymap.set('n', '<leader>sk', builtin.keymaps)
+vim.keymap.set("n", "<leader>f", builtin.find_files)
+vim.keymap.set("n", "<leader>g", builtin.live_grep)
+vim.keymap.set("n", "<leader>sb", builtin.buffers)
+vim.keymap.set("n", "<leader>sd", builtin.diagnostics)
+vim.keymap.set("n", "<leader>gs", builtin.git_status)
+vim.keymap.set("n", "<leader>sh", builtin.help_tags)
+vim.keymap.set("n", "<leader>sk", builtin.keymaps)
+vim.keymap.set("n", "<leader>st", builtin.builtin, {desc = "Builtin Telescope Commands"})
 
 require("nvim-autopairs").setup({check_ts = true})
 
