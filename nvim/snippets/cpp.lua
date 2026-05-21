@@ -9,8 +9,14 @@ using namespace std;
 #define int long long
 
 void space() {{
-  int {}
+  int n{};
+  cin >> n;
 
+  vector<int> arr(n);
+  for (int &x : arr) cin >> x;
+
+
+  
 
 }}
 

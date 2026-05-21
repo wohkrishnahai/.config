@@ -161,6 +161,4 @@ local function pack_clean()
 		vim.pack.del(unused_plugins)
 	end
 end
-
 vim.keymap.set("n", "<leader>pc", pack_clean)
-

@@ -76,8 +76,12 @@ if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
+if.app-id = 'ru.keepcoder.Telegram'
 run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.parallels.desktop.console'
