@@ -37,11 +37,11 @@ vim.pack.add({
 	{src = "https://github.com/stevearc/oil.nvim"},
 	{src = "https://github.com/nvim-tree/nvim-web-devicons"},
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
-	{src = "https://github.com/neovim/nvim-lspconfig"},
+  {src = "https://github.com/neovim/nvim-lspconfig"},
 	{src = "https://github.com/mason-org/mason.nvim"},
 	{src = "https://github.com/nvim-telescope/telescope.nvim", version = "0.1.8"},
 	{src = "https://github.com/nvim-lua/plenary.nvim"},
-	{src = "https://github.com/L3MON4D3/LuaSnip"},
+  { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1")},
 	{src = "https://github.com/chomosuke/typst-preview.nvim"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
 })
@@ -97,7 +97,9 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.diagnostic.config({virtual_text = true,})
+vim.diagnostic.config({
+  virtual_text = true,
+})
 
 vim.lsp.enable({
   "lua_ls", "clangd", "tinymist",
@@ -116,25 +118,48 @@ vim.lsp.config("tinymist", {
 })
 
 -- Native Autocompletion
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if client:supports_method('textDocument/completion') then
-			-- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			-- client.server_capabilities.completionProvider.triggerCharacters = chars
-			vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
-		end
-	end,
+-- vim.api.nvim_create_autocmd('LspAttach', {
+-- 	group = vim.api.nvim_create_augroup('my.lsp', {}),
+-- 	callback = function(args)
+-- 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+-- 		if client:supports_method('textDocument/completion') then
+-- 			-- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+-- 			-- client.server_capabilities.completionProvider.triggerCharacters = chars
+-- 			vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
+-- 		end
+-- 	end,
+-- })
+-- vim.opt.completeopt = {"menu", "menuone", "noinsert", "popup"}
+
+-- Auto-completion
+require("blink.cmp").setup({
+  keymap = {
+    preset = "default",
+    ["<CR>"] = {"accept", "fallback"},
+  },
+  completion = {documentation = {auto_show = false}},
+
+  sources = {
+    default = {"lsp", "path", "snippets", "buffer"},
+    providers = {
+      snippets = {
+        -- score_offset = 3,
+        opts = {
+          search_paths = {vim.fn.stdpath("config") .. "/snippets"},
+        }
+      }
+    }
+  },
 })
-vim.opt.completeopt = {"menu", "menuone", "noinsert", "popup"}
 
-
--- Luasnip
-local ls = require("luasnip")
-ls.setup({enable_autosnippets = true})
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
-vim.keymap.set("i", "<C-e>", function() ls.expand_or_jump(1) end, {silent = true})
+-- Native Snippet Jumping
+vim.keymap.set(
+  {"i", "s"}, "<C-e>", function()
+  if vim.snippet.active({direction = 1}) then
+    vim.snippet.jump(1)
+  end
+end, {silent = true}
+)
 
 -- Unused Plugins Mgmt
 local function pack_clean()

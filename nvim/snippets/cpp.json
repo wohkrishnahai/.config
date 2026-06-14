@@ -1,0 +1,65 @@
+{
+  "CP Template": {
+    "prefix": "lezzgo",
+    "body": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "#define int long long",
+      "",
+      "void space() {",
+      "  int n$0;",
+      "  cin >> n;",
+      "",
+      "  vector<int> arr(n);",
+      "  for (int &x : arr) cin >> x;",
+      "",
+      "",
+      "",
+      "}",
+      "",
+      "int32_t main() {",
+      "  ios::sync_with_stdio(false);",
+      "  cin.tie(nullptr);",
+      "",
+      "  int t = 1;",
+      "  cin >> t;",
+      "",
+      "  while (t--) {",
+      "    space();",
+      "    cout << '\\n';",
+      "  }",
+      "",
+      "  return 0;",
+      "}"
+    ],
+    "description": "cp template"
+  },
+
+  "USACO Template": {
+    "prefix": "usaco",
+    "body": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "#define int long long",
+      "",
+      "void setIO(string name) {",
+      "  if (name.size()) {",
+      "    freopen((name + \".in\").c_str(), \"r\", stdin);",
+      "    freopen((name + \".out\").c_str(), \"w\", stdout);",
+      "  }",
+      "}",
+      "",
+      "int32_t main() {",
+      "  ios::sync_with_stdio(0);",
+      "  cin.tie(0);",
+      "",
+      "  setIO(\"filename\");",
+      "  ",
+      "  $0",
+      "  ",
+      "  return 0;",
+      "}"
+    ],
+    "description": "usaco template"
+  }
+}
