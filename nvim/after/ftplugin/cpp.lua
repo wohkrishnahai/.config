@@ -1,6 +1,6 @@
 
 -- Single line
--- vim.bo.makeprg = "g++-15 -std=c++17 % -o %< && gtimeout 4s ./%< < inputf.in > outputf.in"
+-- vim.bo.makeprg = "g++-16 -std=c++17 % -o %< && gtimeout 4s ./%< < inputf.in > outputf.in"
 
 vim.keymap.set("n", "<leader>r", function()
   local filepath = vim.fn.expand("%")
@@ -12,8 +12,8 @@ vim.keymap.set("n", "<leader>r", function()
   local cmd = {
     "sh", "-c",
     string.format(
-      -- "g++-15 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",  -- w/ error redirection
-      "g++-15 -std=c++17 %s -o %s && gtimeout 4s ./%s < inputf.in > outputf.in",
+      -- "g++-16 %s -o %s 2>&1 && gtimeout 4s ./%s < inputf.in > outputf.in 2>&1",  -- w/ error redirection
+      "g++-16 -std=c++17 %s -o %s && gtimeout 4s ./%s < inputf.in > outputf.in",
       filepath, filename, filename
     )
   }

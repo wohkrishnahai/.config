@@ -140,7 +140,7 @@ require("blink.cmp").setup({
   completion = {documentation = {auto_show = false}},
 
   sources = {
-    default = {"lsp", "path", "snippets", "buffer"},
+    default = {"lsp", "path", "snippets"}, -- "buffer"},
     providers = {
       snippets = {
         -- score_offset = 3,
