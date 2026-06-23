@@ -15,6 +15,7 @@ vim.opt.smartindent = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Keymaps
 vim.g.mapleader = " "
 vim.keymap.set("n", "<C-f>", "<Cmd>Open .<CR>")
 vim.keymap.set("n", "<leader>v", "<Cmd>e $MYVIMRC<CR>")
@@ -22,7 +23,7 @@ vim.keymap.set("n", "<leader>z", "<Cmd>e ~/.config/zsh/.zshrc<CR>")
 vim.keymap.set("n", "<ESC>", "<Cmd>nohlsearch<CR>", {noremap = true, silent = true})
 -- vim.keymap.set("n", "<leader>r", "<Cmd>make<CR>")
 
--- Term keymaps
+-- Terminal
 vim.keymap.set({"n", "t"}, "<leader>bt", "<Cmd>botright 5split<CR> <Cmd>term<CR>i", {desc = "Small Terminal at bottom"});
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {desc = "Enter Normal mode in terminal"})
 
@@ -30,6 +31,12 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {desc = "Enter Normal mode in termin
 for i = 1, 8 do
 	vim.keymap.set({"n","t"}, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
+
+-- Other
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- Plugins
 vim.pack.add({
