@@ -46,8 +46,7 @@ vim.pack.add({
 	{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
   {src = "https://github.com/neovim/nvim-lspconfig"},
 	{src = "https://github.com/mason-org/mason.nvim"},
-	{src = "https://github.com/nvim-telescope/telescope.nvim", version = "0.1.8"},
-	{src = "https://github.com/nvim-lua/plenary.nvim"},
+  {src = "https://github.com/nvim-mini/mini.pick"},
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1")},
 	{src = "https://github.com/chomosuke/typst-preview.nvim"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
@@ -57,25 +56,16 @@ require("vague").setup({transparent = true})
 vim.cmd.colorscheme("vague")
 
 require("oil").setup()
-vim.keymap.set('n', '<leader>e', "<Cmd>Oil<CR>")
+vim.keymap.set("n", "<leader>e", "<Cmd>Oil<CR>")
 
-require("telescope").setup({
-  defaults = {
-    preview = {treesitter = false},
-    path_displays = "smart",
-    borderchars = {"", "", "", "", "", "", "", ""},
-    layout_config = { preview_cutoff = 40, },
-  },
+require('mini.pick').setup({
+  window = {config = {border = 'none'}}
 })
-local builtin = require('telescope.builtin')
-vim.keymap.set("n", "<leader>f", builtin.find_files)
-vim.keymap.set("n", "<leader>g", builtin.live_grep)
-vim.keymap.set("n", "<leader>sb", builtin.buffers)
-vim.keymap.set("n", "<leader>sd", builtin.diagnostics)
-vim.keymap.set("n", "<leader>gs", builtin.git_status)
-vim.keymap.set("n", "<leader>sh", builtin.help_tags)
-vim.keymap.set("n", "<leader>sk", builtin.keymaps)
-vim.keymap.set("n", "<leader>st", builtin.builtin, {desc = "Builtin Telescope Commands"})
+vim.keymap.set("n", "<leader>f", "<cmd>Pick files<CR>")
+vim.keymap.set("n", "<leader>g", "<cmd>Pick grep_live<CR>")
+vim.keymap.set("n", "<leader>sb", "<cmd>Pick buffers<CR>")
+vim.keymap.set("n", "<leader>sh", "<cmd>Pick help_tags<CR>")
+vim.keymap.set("n", "<leader>st", "<cmd>Pick<CR>", {desc = "Builtin Pick Commands"})
 
 require("nvim-autopairs").setup({check_ts = true})
 
