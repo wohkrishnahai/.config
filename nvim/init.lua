@@ -55,7 +55,13 @@ vim.pack.add({
 require("vague").setup({transparent = true})
 vim.cmd.colorscheme("vague")
 
-require("oil").setup()
+require("oil").setup({
+  lsp_file_methods = {
+    enabled = true,
+    timeout_ms = 1000,
+    autosave_changes = true,
+  },
+})
 vim.keymap.set("n", "<leader>e", "<Cmd>Oil<CR>")
 
 require('mini.pick').setup({
