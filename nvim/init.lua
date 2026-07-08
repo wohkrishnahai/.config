@@ -41,13 +41,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Plugins
 vim.pack.add({
   {src = "https://github.com/vague2k/vague.nvim"},
-	{src = "https://github.com/stevearc/oil.nvim"},
 	{src = "https://github.com/nvim-tree/nvim-web-devicons"},
-	{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
-  {src = "https://github.com/neovim/nvim-lspconfig"},
 	{src = "https://github.com/mason-org/mason.nvim"},
+  {src = "https://github.com/neovim/nvim-lspconfig"},
+	{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
+	{src = "https://github.com/stevearc/oil.nvim"},
   {src = "https://github.com/nvim-mini/mini.pick"},
-  { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1")},
+  {src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1")},
 	{src = "https://github.com/chomosuke/typst-preview.nvim"},
 	{src = "https://github.com/windwp/nvim-autopairs"},
 })
