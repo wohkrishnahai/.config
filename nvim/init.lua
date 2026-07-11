@@ -48,8 +48,8 @@ vim.pack.add({
 	{src = "https://github.com/stevearc/oil.nvim"},
   {src = "https://github.com/nvim-mini/mini.pick"},
   {src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1")},
+  {src = "https://github.com/nvim-mini/mini.pairs"},
 	{src = "https://github.com/chomosuke/typst-preview.nvim"},
-	{src = "https://github.com/windwp/nvim-autopairs"},
 })
 
 require("vague").setup({transparent = true})
@@ -70,10 +70,9 @@ require('mini.pick').setup({
 vim.keymap.set("n", "<leader>f", "<cmd>Pick files<CR>")
 vim.keymap.set("n", "<leader>g", "<cmd>Pick grep_live<CR>")
 vim.keymap.set("n", "<leader>sb", "<cmd>Pick buffers<CR>")
-vim.keymap.set("n", "<leader>sh", "<cmd>Pick help_tags<CR>")
-vim.keymap.set("n", "<leader>st", "<cmd>Pick<CR>", {desc = "Builtin Pick Commands"})
+vim.keymap.set("n", "<leader>sh", "<cmd>Pick help<CR>")
 
-require("nvim-autopairs").setup({check_ts = true})
+require("mini.pairs").setup()
 
 require("typst-preview").setup()
 vim.keymap.set("n", "<leader>p", "<Cmd>TypstPreview<CR>")
@@ -146,7 +145,6 @@ require("blink.cmp").setup({
     default = {"lsp", "path", "snippets"}, -- "buffer"},
     providers = {
       snippets = {
-        -- score_offset = 3,
         opts = {
           search_paths = {vim.fn.stdpath("config") .. "/snippets"},
         }
