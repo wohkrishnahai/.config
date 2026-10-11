@@ -2,5 +2,5 @@ theme = Vague
 font-size = 24
 
 macos-titlebar-style = hidden
-background-opacity = 0.97
+background-opacity = 0.94
 # background = 000000

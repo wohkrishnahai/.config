@@ -19,10 +19,8 @@ outer.right = 0
 
 [mode.main.binding]
 alt-slash = 'layout tiles horizontal vertical'
-# alt-comma = 'layout tiles horizontal horizontal'
 alt-comma = 'layout accordion horizontal vertical'
 alt-space = 'layout floating tiling'
-# alt-backtick = 'flatten-workspace-tree'
 alt-equal = 'balance-sizes'
 
 # vim-like binds 
@@ -43,7 +41,7 @@ alt-shift-l = 'move right'
 alt-1 = 'workspace 1' # safari
 alt-2 = 'workspace 2' # brave
 alt-3 = 'workspace 3' # terminal
-alt-4 = 'workspace 4' # pdf
+alt-4 = 'workspace 4' # viewing
 alt-5 = 'workspace 5' # msgs
 alt-6 = 'workspace 6' # misc.
 alt-7 = 'workspace 7' # vm
@@ -80,6 +78,10 @@ if.app-id = 'com.apple.Preview'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
+if.app-id = 'com.colliderli.iina'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace 5'
 
@@ -107,5 +109,3 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
 run = 'layout floating'
-
-
